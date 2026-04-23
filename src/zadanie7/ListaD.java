@@ -11,9 +11,9 @@ public class ListaD<E extends Comparable<E>> {
         }
     }
 
-    private Element poczatek; //1 element
-    private Element koniec; //ostatni element
-    private Element aktualny; //obecny elem.
+    private Element poczatek; //wskaz. 1 element
+    private Element koniec; //wskaz. ostatni element
+    private Element aktualny; //wskaz. obecny elem.
 
     public ListaD() {
         poczatek = null;
@@ -27,8 +27,8 @@ public class ListaD<E extends Comparable<E>> {
             poczatek = nowyElement;
             koniec = nowyElement;
         } else {
-            koniec.nastepny = nowyElement; //stary koniec staje sie nowy elem
-            nowyElement.poprzedni = koniec; //nowy elent staje sie koncem
+            koniec.nastepny = nowyElement; //stary koniec staje sie nastepnym
+            nowyElement.poprzedni = koniec; //nowy element wskazuje na koniec jako poprzedni
             koniec = nowyElement; //nowy koniec
         }
     }
@@ -51,9 +51,9 @@ public class ListaD<E extends Comparable<E>> {
 
     public E getNextElement() {
         if (aktualny == null) {
-            aktualny = poczatek;
+            aktualny = poczatek; //jesli jest pierwsze to zrob od nowa
         } else {
-            aktualny = aktualny.nastepny;
+            aktualny = aktualny.nastepny; //przesun. wskaz. na kolejny
         }
         if (aktualny != null) {
             return aktualny.wartosc;
@@ -63,9 +63,9 @@ public class ListaD<E extends Comparable<E>> {
     }
     public E getPreviousElement() {
         if (aktualny == null) {
-            aktualny = koniec;
+            aktualny = koniec; //jesli nic nie wybrano zacznij od konca
         } else {
-            aktualny = aktualny.poprzedni;
+            aktualny = aktualny.poprzedni; //przesun na poprzedni wezel
         }
         if (aktualny != null) {
             return aktualny.wartosc;
@@ -83,25 +83,25 @@ public class ListaD<E extends Comparable<E>> {
 
         do {
             statusZamiany = false;
-            Element temp = poczatek;
+            Element temp = poczatek; //rozp. od 1 elem.
 
-            while (temp.nastepny != null) {
-                if (temp.wartosc.compareTo(temp.nastepny.wartosc) > 0) {
-                    E kopia = temp.wartosc;
+            while (temp.nastepny != null) { //przejscie po calej liscie
+                if (temp.wartosc.compareTo(temp.nastepny.wartosc) > 0) { //lewy jest wiekszy od prawego
+                    E kopia = temp.wartosc; //zamiana z uzyciem zmiennej temp
                     temp.wartosc = temp.nastepny.wartosc;
                     temp.nastepny.wartosc = kopia;
-                    statusZamiany = true;
+                    statusZamiany = true; //odnotowanie zmiany
                 }
                 temp = temp.nastepny;
             }
-        } while (statusZamiany);
+        } while (statusZamiany); //dopoki lista niepozostanie posortowana
     }
 
     public void wyswietl () {
         Element temp = poczatek;
         while (temp != null) {
             System.out.println(temp.wartosc.toString());
-            temp = temp.nastepny;
+            temp = temp.nastepny; //przesun. na kolejny elem.
         }
     }
 }

@@ -25,7 +25,7 @@ public class PrzegladarkaGrafuMain {
         PrzegladanieGrafu graf;
 
         if (jakiAlgorytm.equals("DFS")) {
-            graf = new DFS(macierz);
+            graf = new DFS(macierz); //uruch. dfs
         } else {
             graf = new BFS(macierz);
         }
