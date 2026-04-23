@@ -8,5 +8,5 @@ public class Lotniskowiec extends Niszczyciel {
 
     public String toString() {
         return "Lotniskowiec o ID: " + idOkretu + ", moze pomiescic " + iloscSamolotow + " samolotow";
-    }giut
+    }
 }

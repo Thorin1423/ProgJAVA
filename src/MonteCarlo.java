@@ -8,7 +8,7 @@ public class MonteCarlo {
         Figura figura = new Figura(1.0);
         policz(figura, 1000);
         System.out.println();
-        policz(figura, 10000);
+        policz(figura, 10000000);
     }
 
     public static void policz(Figura figura, int liczbaLosowan) {

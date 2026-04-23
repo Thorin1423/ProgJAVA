@@ -33,7 +33,7 @@ public class ONP {
     }
 
     public static void main(String[] args) {
-        ONP kalkulator = new ONP("2 3 + 5 *"); // inny przyklad 12 2 3 * + powinno wyjsc 18
+        ONP kalkulator = new ONP("2 3 + 5 * - 10 +"); // inny przyklad 12 2 3 * + powinno wyjsc 18
         System.out.println("Wynik: " + kalkulator.wyznaczWartosc());
     }
 }
