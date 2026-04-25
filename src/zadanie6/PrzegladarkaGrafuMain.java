@@ -1,3 +1,4 @@
+package zadanie6;
 import java.util.Scanner;
 public class PrzegladarkaGrafuMain {
     public static void main(String[] args) {

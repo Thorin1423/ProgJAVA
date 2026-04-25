@@ -1,6 +1,6 @@
 public class PorownywarkaMain {
     public static void main(String[] args) {
-        Pojazd auto = new Pojazd(4, 75000, 1700, 5);
+        Pojazd auto = new Pojazd(4, 75000, 1700, 5); //kola,cena,waga,ilosc.pas.
         Pojazd rower = new Pojazd(2, 3000, 25, 1);
         Pojazd lodz = new Pojazd(0, 120000, 3200, 10);
 

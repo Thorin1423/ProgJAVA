@@ -28,3 +28,11 @@ public class Main {
         sc.close();
     }
 }
+
+/*
+3
+C 1
+S 1
+S 2
+T 3
+ */

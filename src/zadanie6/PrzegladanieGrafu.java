@@ -1,3 +1,4 @@
+package zadanie6;
 import java.util.LinkedList;
 
 abstract class PrzegladanieGrafu {
@@ -11,7 +12,7 @@ abstract class PrzegladanieGrafu {
     abstract void wstaw(int wierzcholek);
     abstract int pobierz();
 
-    public void Algorytm (int wierzcholekPoczatkowy){
+    public void Algorytm(int wierzcholekPoczatkowy){
         boolean[] odwiedzone = new boolean[macierzSasiedztwa.length];
 
         wstaw(wierzcholekPoczatkowy); //ustaw. poczatkowe
