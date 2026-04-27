@@ -1,0 +1,11 @@
+dobry: wspaniały,świetny,znakomity
+szybki: prędki,błyskawiczny,ekspresowy
+duży: ogromny,wielki,rozległy
+mały: drobny,malutki,niepozorny
+ładny: piękny,uroczy,zachwycający
+głupi: nierozsądny,niemądry,nieinteligentny
+mądry: inteligentny,rozumny,błyskotliwy
+szczęśliwy: radosny,zadowolony,uradowany
+smutny: przygnębiony,zmartwiony,zdołowany
+cichy: spokojny,stonowany,delikatny
+głośny: hałaśliwy,rykliwy,wrzaskliwy
