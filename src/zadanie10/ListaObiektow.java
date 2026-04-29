@@ -20,17 +20,16 @@ public class ListaObiektow {
     public Object pobierzObiekt(int pozycja) throws PustaListaException, ZlyIndeksException {
         if(elementy.isEmpty()) {
             throw new PustaListaException("Lista jest pusta!");
-            return elementy.get(0);
+            // USUNIĘTO MARTWY KOD (return) TUTAJ
         } else {
             if (pozycja < 0 || pozycja >= elementy.size()) {
                 throw new ZlyIndeksException("Podano bledny indeks: " + pozycja);
             }
             return elementy.get(pozycja); //zwrocenie obiektu
         }
-
     }
 
-    public Object usunObiekt(int pozycja) {
+    public Object usunObiekt(int pozycja) throws PustaListaException, ZlyIndeksException {
         if(elementy.isEmpty()) {
             throw new PustaListaException("Lista jest pusta!");
         }
@@ -40,7 +39,7 @@ public class ListaObiektow {
         return elementy.remove(pozycja); //usuwa element i go zwraca
     }
 
-    public Object indeksObiektu(Object obiekt) throws BrakObiektuException {
+    public int indeksObiektu(Object obiekt) throws BrakObiektuException {
         int pozycja = elementy.indexOf(obiekt); //znalezienie indeksu w liscie
 
         if(pozycja == -1) { //brak obiektu
@@ -49,7 +48,7 @@ public class ListaObiektow {
         return pozycja;
     }
 
-    public Object pobierzZKolejki(int pozycja) throws PustaListaException { //kolejka FIFO
+    public Object pobierzZKolejki() throws PustaListaException { //kolejka FIFO
         if(elementy.isEmpty()) {
             throw new PustaListaException("Lista jest pusta!");
         }
