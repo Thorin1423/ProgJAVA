@@ -17,7 +17,7 @@ public class ProstyShell {
         System.out.println("Wpisz 'cp linia <skad> <dokad>' aby skopiowac plik linia po linii.");
 
         while (true) {
-            System.out.print("$ ");
+            System.out.print("$ "); //znak zachety
             komenda = sc.nextLine().trim();
 
             if (komenda.equals("quit") || komenda.equals("exit")) {
@@ -25,104 +25,99 @@ public class ProstyShell {
                 break;
 
             } else if (komenda.equals("ls")) {
-                listujKatalog(".");
+                listujKatalog("."); //wyswietlanie katalogu biezacego
 
             } else if (komenda.startsWith("cp ")) {
                 String[] czesci = komenda.split(" "); //rozpisanie komendy na cp-tryb-skad-dokad
                 if (czesci.length != 4) {
-                    System.out.println("Uzycie: cp <znak|linia> <plik_pocz.> <plik_docelowy>");
+                    System.out.println("Uzycie: cp [znak|linia] [plik_pocz.] [plik_docelowy]");
                 } else {
                     String tryb  = czesci[1];
                     String pocz  = czesci[2];
                     String doc = czesci[3];
 
                     if (tryb.equals("znak")) {
-                        kopiujPoZnaku(pocz, doc);
+                        kopiujPoZnaku(pocz, doc); //kopia bajt po bajcie
                     } else if (tryb.equals("linia")) {
-                        kopiujPoLinii(pocz, doc);
+                        kopiujPoLinii(pocz, doc); //kopia po linia po linii
                     } else {
                         System.out.println("Nieznany tryb kopiowania: " + tryb + ". Uzyj 'znak' lub 'linia'.");
                     }
                 }
-
             } else if (!komenda.isEmpty()) {
                 System.out.println("Komenda: [" + komenda + "] nie jest znana!");
             }
         }
-
         sc.close();
     }
 
-    // --- ls: listowanie zawartosci biezacego katalogu (zadanie 7.2.1) ---
-    public static void listujKatalog(String nazwaKatalogu) {
+    public static void listujKatalog(String nazwaKatalogu) { //z zadania 7.2.1
         File katalog = new File(nazwaKatalogu);
 
         FilenameFilter filtr = new FilenameFilter() {
             public boolean accept(File dir, String name) {
-                // pomijamy pliki .txt zgodnie z trescia zadania 7.2.1
-                if (name.endsWith(".txt")) return false;
-                else return true;
+                if (name.endsWith(".txt")) return false; //pominiecie plikow .txt, reszta jest wyswietlana
+                else {
+                    return true;
+                }
             }
         };
 
-        File[] pliki = katalog.listFiles(filtr);
+        File[] pliki = katalog.listFiles(filtr); //pobranie tablicy plikow z filtrem
 
-        // sprawdzamy czy katalog dal sie odczytac
-        if (pliki == null) {
-            System.out.println("Blad: nie mozna odczytac katalogu.");
+        if (pliki == null) { //sprawdzenie czy katalog udalo sie odczytac
+            System.out.println("Blad!: nie mozna odczytac katalogu.");
             return;
         }
 
         for (File f : pliki) {
-            String k = "";
-            if (f.isDirectory()) k = "/";   // katalogi oznaczamy "/"
-            System.out.println(f.getName() + k + "\t" + f.length() + " b" + "\t" + new Date(f.lastModified()));
+            String kat = "";
+            if (f.isDirectory()) kat = "/"; //ozn. katalogow "/"
+            System.out.println(f.getName() + kat + "\t" + f.length() + " b" + "\t" + new Date(f.lastModified())); //wypisanie: nazwa, rozmiar w bajtach, data ostatniej modyfikacji
         }
     }
 
-    // --- cp znak: kopiowanie znak po znaku (zadanie 7.2.2 - KopiujPoZnaku) ---
-    public static void kopiujPoZnaku(String skad, String dokad) {
+    public static void kopiujPoZnaku(String pocz, String doc) { //z zadania 7.2.2.
         try {
-            FileInputStream  fis = new FileInputStream(skad);
-            FileOutputStream fos = new FileOutputStream(dokad);
+            FileInputStream  fis = new FileInputStream(pocz); //czytanie z pliku
+            FileOutputStream fos = new FileOutputStream(doc); //zapisanie do pliku wyjsciowego
 
-            while (fis.available() > 0) {
-                fos.write(fis.read());
+            while (fis.available() > 0) { //dopoki sa dane
+                fos.write(fis.read()); //odczyt pojedynczego bajtu i zapis do pliku
             }
 
             fis.close();
             fos.close();
 
-            System.out.println("Skopiowano znak po znaku: " + skad + " -> " + dokad);
+            System.out.println("Skopiowano znak po znaku: " + pocz + " -> " + doc);
 
         } catch (FileNotFoundException e) {
-            System.out.println("Blad: Nie znaleziono pliku: " + skad);
+            System.out.println("Blad: Nie znaleziono pliku: " + pocz);
         } catch (IOException e) {
-            System.out.println("Blad podczas kopiowania: " + e.toString());
+            System.out.println("Blad podczas kopiowania: " + e.toString()); //dla innych bledow
         }
     }
 
-    // --- cp linia: kopiowanie linia po linii (zadanie 7.2.2 - KopiujPoLinii) ---
-    public static void kopiujPoLinii(String skad, String dokad) {
+    public static void kopiujPoLinii(String pocz, String doc) { //z zadania 7.2.2
         try {
-            BufferedReader br = new BufferedReader(new FileReader(skad));
-            BufferedWriter bw = new BufferedWriter(new FileWriter(dokad));
+            BufferedReader br = new BufferedReader(new FileReader(pocz)); //buforowanie dla wydajnejszego odczytu i zapisu
+            BufferedWriter bw = new BufferedWriter(new FileWriter(doc));
 
-            String linia = br.readLine();
+            String linia = br.readLine(); //wczytanie pierwszej linii
             while (linia != null) {
-                bw.write(linia);
-                bw.newLine();
-                linia = br.readLine();
+                bw.write(linia); //zapis linii
+                bw.newLine(); //dodanie znaku nowej linii
+                linia = br.readLine(); //wczytanie kolejnej linii
             }
 
-            bw.flush();   // wymuszamy zapis buforowanych danych na dysk
+            bw.flush(); //wymuszenie zapisu na dysk
             bw.close();
             br.close();
 
-            System.out.println("Skopiowano linia po linii: " + skad + " -> " + dokad);
+            System.out.println("Skopiowano linia po linii: " + pocz + " -> " + doc);
 
         } catch (FileNotFoundException e) {
-            System.out.println("Blad: Nie znaleziono pliku: " + skad);
+            System.out.println("Blad: Nie znaleziono pliku: " + pocz);
         } catch (IOException e) {
             System.out.println("Blad podczas kopiowania: " + e.toString());
         }
