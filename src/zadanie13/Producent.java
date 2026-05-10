@@ -15,7 +15,7 @@ public class Producent implements Runnable {
         Random r = new Random();
         while (true) {
             try {
-                Thread.sleep(3000); //opoznienie produkcji o 3 sekundy
+                Thread.sleep(3000); //opoznienie produkcji o 6 sekundy
             } catch (InterruptedException ex) {
                 Logger.getLogger(Producent.class.getName()).log(Level.SEVERE, null, ex);
             }

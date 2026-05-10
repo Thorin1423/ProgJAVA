@@ -20,7 +20,6 @@ public class ListaObiektow {
     public Object pobierzObiekt(int pozycja) throws PustaListaException, ZlyIndeksException {
         if(elementy.isEmpty()) {
             throw new PustaListaException("Lista jest pusta!");
-            // USUNIĘTO MARTWY KOD (return) TUTAJ
         } else {
             if (pozycja < 0 || pozycja >= elementy.size()) {
                 throw new ZlyIndeksException("Podano bledny indeks: " + pozycja);

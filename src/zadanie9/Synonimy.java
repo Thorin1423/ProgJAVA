@@ -27,7 +27,8 @@ public class Synonimy {
 
             for (String linia : linie) { //przejscie po kazdej linijce
                 String[] slowa = linia.split(":");
-                slownik.put(slowa[0].trim(), List.of(slowa[1].trim().split(","))); //klucz to slowo [0],pobranie slowa [1], podzielenie po przecinkach i otworzenie listy //trim do biaych znakow
+                slownik.put(slowa[0].trim(), List.of(slowa[1].trim().split(",")));
+                //klucz to slowo [0],pobranie slowa [1], podzielenie po przecinkach i otworzenie listy //trim do biaych znakow
             }
             System.out.println("Slownik wczytany poprawnie! Rozmiar: " + slownik.size());
         } catch (Exception e) {
@@ -35,7 +36,7 @@ public class Synonimy {
         }
 
         if (args.length == 0) {
-            System.out.println("Proszę podać słowo do wyszukania.");
+            System.out.println("Podaj słowo do wyszukania!");
             return;
         }
 
