@@ -7,10 +7,17 @@ public abstract class Mieszkaniec { //abstraktcyjna klasa mieszkanca wsi
         this.imie = imie;
     }
 
-    public void przywitajSieZeSmokiem(Smok smok) { //proba przywitania sie ze smokiem
-        if (!smok.czyZiejeOgniem()) { //mozna sie przywitac jak nie zieje ogniem
+    public void przywitajSieZeSmokiem(Smok smok) {
+        if (!smok.czyZyje()) {
+            // 1. Przypadek: Smok jest martwy
+            System.out.println(smok.podajImie() + " nie zyje! Nie mozna sie z nim przywitac.");
+
+        } else if (!smok.czyZiejeOgniem()) {
+            // 2. Przypadek: Smok żyje i nie zieje ogniem
             System.out.println(imie + ": Czesc, " + smok.podajImie() + "!");
-        } else { //nie mozna sie przywitac jesli zieje ogniem
+
+        } else {
+            // 3. Przypadek: Pozostałe opcje, czyli smok żyje i zieje ogniem
             System.out.println(imie + " boi się przywitac — smok zieje ogniem!");
         }
     }

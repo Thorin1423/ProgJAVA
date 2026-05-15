@@ -5,8 +5,8 @@ public class Wioska { //glowna klasa main
     public static void main(String[] args) { //punkt startowy program
         //sa 3 smoki (1 niebezpieczny)
         Smok smaug  = new Smok("Smaug", true);   //niebezpieczny
-        Smok zielus = new Smok("Zielus", false);  //roslinozerny
-        Smok brzos = new Smok("Brzos", false); //owocozerny
+        Smok zielus = new Smok("Zielus", false);  //nie grozny
+        Smok brzos = new Smok("Brzos", false); //nie grozny
 
         //jest 2 mieszkancow
         Szewc szewc = new Szewc("Dratewka");
@@ -34,8 +34,8 @@ public class Wioska { //glowna klasa main
         szewc.przywitajSieZeSmokiem(zielus);
         kucharz.przywitajSieZeSmokiem(brzos);
 
-        //roslinozerne smoki jedza zwykle owce (bez efektu)
-        System.out.println("\n--- Roslinozerne smoki jedza ---"); //roslinozerne smoki jedza owce bez efektow
+        //nie grozne smoki jedza zwykle owce (bez efektu)
+        System.out.println("\n--- Nie grozne smoki jedza ---"); //nie grozne smoki jedza owce bez efektow
         zielus.zjedzOwce(new Owca("Franek"));
         brzos.zjedzOwce(new Owca("Basia"));
     }
